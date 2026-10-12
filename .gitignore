@@ -1,0 +1,35 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Model weights & ONNX
+weights/*.pt
+weights/*.onnx
+*.pt
+*.onnx
+
+# Datasets and raw media
+datasets/
+data/raw/
+uploads/
+*.mp4
+*.avi
+*.mov
+
+# Outputs and exports (keep .gitkeep)
+outputs/*
+!outputs/.gitkeep
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
