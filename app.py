@@ -307,6 +307,38 @@ elif nav_selection == "Image Analysis":
                     "edge truncation, or ambiguous distance. Human supervisor inspection is required."
                 )
 
+            # Flagged items evidence crops gallery (P0)
+            flagged_workers = [
+                (idx, r) for idx, r in enumerate(compliance_results)
+                if r.overall_state in ("Potential Violation", "Needs Review")
+            ]
+            if flagged_workers:
+                st.markdown("#### 🔍 Flagged Worker Evidence Crops")
+                st.caption("Visual bounding crops requiring supervisor scrutiny:")
+                cols_flagged = st.columns(min(len(flagged_workers), 4))
+                for c_idx, (w_idx, r) in enumerate(flagged_workers):
+                    col = cols_flagged[c_idx % len(cols_flagged)]
+                    with col:
+                        # Extract padded crop
+                        bx1, by1, bx2, by2 = [int(v) for v in r.worker_box]
+                        pad_w = int((bx2 - bx1) * 0.08)
+                        pad_h = int((by2 - by1) * 0.08)
+                        cx1 = max(0, bx1 - pad_w)
+                        cy1 = max(0, by1 - pad_h)
+                        cx2 = min(w, bx2 + pad_w)
+                        cy2 = min(h, by2 + pad_h)
+                        if cx2 > cx1 and cy2 > cy1:
+                            crop_bgr = img_bgr[cy1:cy2, cx1:cx2]
+                            st.image(
+                                cv2.cvtColor(crop_bgr, cv2.COLOR_BGR2RGB),
+                                caption=f"Worker {w_idx+1} ({r.overall_state})",
+                                use_container_width=True,
+                            )
+                            st.caption(
+                                f"**Helmet:** {r.helmet_state} | **Vest:** {r.vest_state}\n\n"
+                                f"*{'; '.join(r.review_reasons) if r.review_reasons else 'No special flags'}*"
+                            )
+
 
 # ==============================================================================
 # TAB 3: VIDEO ANALYSIS
