@@ -1,10 +1,10 @@
 """SafeSight AI - Main Streamlit Application.
 
 Tagline: See Risks. Improve Safety.
-HackZen 2.0 - Computer Vision Track (CREOZEN LTD)
 """
 
 import sys
+import json
 from pathlib import Path
 import tempfile
 import cv2
@@ -769,3 +769,4 @@ elif nav_selection == "Evaluation & Failure Analysis":
         4. **Data Minimization:** Authorized footage should be deleted following audit review using the *Clear Uploads & Output Cache* button.
         """
     )
+    
