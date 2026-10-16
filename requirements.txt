@@ -1,6 +1,7 @@
 # Core CV & Deep Learning
 ultralytics>=8.1.0
-opencv-python>=4.8.0.76
+opencv-python>=4.10.0.84
+
 numpy>=1.26.0
 pandas>=2.2.0
 matplotlib>=3.8.0
