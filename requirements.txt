@@ -1,15 +1,16 @@
-# Core CV & Deep Learning
-ultralytics>=8.1.0
-opencv-python>=4.10.0.84
 
+# Computer Vision and Deep Learning
+ultralytics>=8.1.0
+opencv-python-headless==4.10.0.84
 numpy>=1.26.0
 pandas>=2.2.0
 matplotlib>=3.8.0
 
-# Web Dashboard & Utilities
+# Web Dashboard and Utilities
 streamlit>=1.32.0
 requests>=2.31.0
 psutil>=5.9.0
+Pillow>=10.0.0
 
 # Testing
 pytest>=8.0.0
